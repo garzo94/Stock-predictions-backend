@@ -87,7 +87,7 @@ DATABASES = {
         "USER": "postgres",
         "PASSWORD": "KiqJfKmTHTCguXnXj2os",
         "HOST": "containers-us-west-46.railway.app",
-        "PORT":'5610'
+        "PORT":'5610',
     }
 }
 
@@ -122,7 +122,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+CSRF_TRUSTED_ORIGINS=['*']
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
