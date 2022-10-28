@@ -13,11 +13,11 @@ from keras.layers import Dense, LSTM
 
 
 class Data(APIView):
-    def get(self):
+    def get(self, request):
         #Get the stock quote
-        stock = self.request.GET.get('stock')
-        start = self.request.GET.get('start')
-        end = self.request.GET.get('end')
+        stock = request.GET.get('stock')
+        start = request.GET.get('start')
+        end = request.GET.get('end')
         df = web.DataReader(stock, data_source='yahoo', start=start, end=end)
         df.reset_index(inplace=True)
 
