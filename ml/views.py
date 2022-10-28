@@ -13,9 +13,12 @@ from keras.layers import Dense, LSTM
 
 
 class Data(APIView):
-    def get(self,request):
+    def get(self):
         #Get the stock quote
-        df = web.DataReader('AAPL', data_source='yahoo', start='2019-01-01', end='2019-12-17')
+        stock = self.request.GET.get('stock')
+        start = self.request.GET.get('start')
+        end = self.request.GET.get('end')
+        df = web.DataReader(stock, data_source='yahoo', start=start, end=end)
         df.reset_index(inplace=True)
 
         # Create a new dataframe wit Close column
