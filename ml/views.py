@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from datetime import datetime
+import yfinance as yf
 
 # data libraries
 import math
-import pandas_datareader as web
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
@@ -18,7 +19,12 @@ class Data(APIView):
         stock = request.GET.get('stock')
         start = request.GET.get('start')
         end = request.GET.get('end')
-        df = web.DataReader(stock, data_source='yahoo', start=start, end=end)
+
+        # print(stock, start, end,'stockstartend')
+        print(start, type(start), 'startttt')
+        yf.pdr_override()
+        df = yf.download(stock,  start=start, end=end)
+
         df.reset_index(inplace=True)
 
         # Create a new dataframe wit Close column
@@ -125,4 +131,5 @@ class Data(APIView):
                     "rmse":rmse
                     }
             }
+
                     )
